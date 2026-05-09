@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedFuture — Live SEMrush Dashboard</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,Helvetica,sans-serif;background:#F5F5F0;color:#2C2C2A;font-size:14px}
+  .hdr{background:#0C2D5E;padding:18px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .hdr h1{color:white;font-size:20px;margin-bottom:3px}
+  .hdr p{color:#B5D4F4;font-size:12px}
+  .badge{background:#E6F1FB;color:#0C447C;font-size:12px;padding:5px 14px;border-radius:6px;font-weight:bold}
+  .box{max-width:1100px;margin:0 auto;padding:20px}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:18px}
+  .metric{background:white;border-radius:8px;padding:14px;border:0.5px solid #D3D1C7}
+  .metric .lbl{font-size:11px;color:#5F5E5A;margin-bottom:5px}
+  .metric .val{font-size:22px;font-weight:bold}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{padding:9px 20px;border:1px solid #D3D1C7;border-radius:6px;cursor:pointer;background:white;color:#5F5E5A;font-size:13px;font-weight:bold}
+  .tab:hover{background:#E6F1FB;color:#0C447C}
+  .tab.on{background:#0C2D5E;color:white;border-color:#0C2D5E}
+  .card{background:white;border-radius:10px;border:0.5px solid #D3D1C7;overflow:hidden;margin-bottom:14px}
+  .card-hdr{background:#0C2D5E;color:white;padding:11px 16px;font-weight:bold;font-size:13px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#185FA5;color:white;padding:10px 12px;text-align:left;font-size:12px}
+  th.c{text-align:center}
+  td{padding:10px 12px;border-bottom:0.5px solid #F0F0EA;vertical-align:middle}
+  tr:nth-child(even) td{background:#FAFAF8}
+  .kw-row{cursor:pointer}
+  .kw-row:hover td{background:#EBF4FB!important}
+  .footer{text-align:center;font-size:11px;color:#888;margin-top:24px;padding-bottom:24px}
+  .plat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+  .plat-card{background:white;border-radius:10px;padding:16px;border:1px solid #D3D1C7}
+  .plat-card.top{border:2px solid #185FA5}
+  .alert-red{background:#FCEBEB;border-radius:8px;padding:14px;color:#791F1F;font-size:13px;line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <h1>MedFuture Australia — Live SEMrush Dashboard</h1>
+    <p>Powered by SEMrush API &nbsp;·&nbsp; Australia &nbsp;·&nbsp; 6 Medical Specialties &nbsp;·&nbsp; Real Data</p>
+  </div>
+  <div>
+    <div class="badge">✅ Live Data</div>
+    <div style="font-size:11px;color:#B5D4F4;margin-top:4px;text-align:right">09 May 2026, 04:46 PM</div>
+  </div>
+</div>
+
+<div class="box">
+
+  
+
+  <div style="background:#E6F1FB;border-left:4px solid #0C2D5E;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:13px;color:#0C447C">
+    ✅ Dashboard loaded with <strong>real SEMrush data</strong> for Australia. 
+    Click any keyword row to see top 5 platform recommendations.
+  </div>
+
+  <div class="metrics">
+    <div class="metric"><div class="lbl">Total monthly searches</div><div class="val" style="color:#185FA5">5,510</div></div>
+    <div class="metric"><div class="lbl">Avg CPC (AUD)</div><div class="val">$1.13</div></div>
+    <div class="metric"><div class="lbl">MedFuture organic traffic</div><div class="val" style="color:#A32D2D">93/mo</div></div>
+    <div class="metric"><div class="lbl">Top competitor spend</div><div class="val" style="color:#A32D2D">$15,569/mo</div></div>
+    <div class="metric"><div class="lbl">MedFuture ad spend</div><div class="val">$0/mo</div></div>
+    <div class="metric"><div class="lbl">Top platform</div><div class="val" style="color:#0C2D5E">Google</div></div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" onclick="show('kw',this)">Keywords</div>
+    <div class="tab"    onclick="show('comp',this)">Competitors</div>
+    <div class="tab"    onclick="show('rec',this)">Final Recommendation</div>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div id="s-kw">
+    <div class="card">
+      <div class="card-hdr">Keyword Data — Click any row to expand top 5 platforms</div>
+      <table>
+        <thead><tr>
+          <th>Specialty / Best Keyword Found</th>
+          <th class="c">Monthly Volume</th>
+          <th class="c">CPC (AUD)</th>
+          <th class="c">Difficulty</th>
+          <th class="c">Best Platform</th>
+        </tr></thead>
+        <tbody>
+        <tr class="kw-row" onclick="toggle(0)" title="Click to see top 5 platforms">
+          <td>
+            <strong style="color:#0C2D5E">General Practitioner</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">GP jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">720</td>
+          <td style="text-align:center;font-size:14px">$2.45</td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Low 14%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e0" style="display:none">
+          <td colspan="5" style="padding:0;background:#F5F5F0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td colspan="5" style="padding:9px 16px;font-size:12px;font-weight:bold;color:#5F5E5A;background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                Top 5 platforms for &quot;General Practitioner&quot; — ranked by suitability
+              </td></tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E6F1FB;
+                  color:#0C447C;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Google Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Highest search intent — doctors actively looking for GP roles.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Seek.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Australia's #1 job board. GPs check Seek daily for roles.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">LinkedIn Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Target 'General Practitioner' by job title directly.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Indeed.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Second largest AU job board. Good secondary reach.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Facebook Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Awareness only. GPs not actively job hunting on social.</td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(1)" title="Click to see top 5 platforms">
+          <td>
+            <strong style="color:#0C2D5E">Occupational Therapist</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">occupational therapist jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">480</td>
+          <td style="text-align:center;font-size:14px">$0.72</td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Low 17%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              LinkedIn Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e1" style="display:none">
+          <td colspan="5" style="padding:0;background:#F5F5F0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td colspan="5" style="padding:9px 16px;font-size:12px;font-weight:bold;color:#5F5E5A;background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                Top 5 platforms for &quot;Occupational Therapist&quot; — ranked by suitability
+              </td></tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E1F5EE;
+                  color:#085041;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">LinkedIn Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Target 'Occupational Therapist' job title. Very precise.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Google Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Medium difficulty = cheaper than GP to compete.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Seek.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">OTs actively use Seek. Strong allied health section.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Indeed.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Good secondary platform to reach OTs.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Facebook Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">OT communities on Facebook. Awareness only.</td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(2)" title="Click to see top 5 platforms">
+          <td>
+            <strong style="color:#0C2D5E">Speech Pathology</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">speech pathology jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">720</td>
+          <td style="text-align:center;font-size:14px">$0.97</td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Low 16%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e2" style="display:none">
+          <td colspan="5" style="padding:0;background:#F5F5F0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td colspan="5" style="padding:9px 16px;font-size:12px;font-weight:bold;color:#5F5E5A;background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                Top 5 platforms for &quot;Speech Pathology&quot; — ranked by suitability
+              </td></tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E6F1FB;
+                  color:#0C447C;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Google Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Low-medium difficulty. Good ROI with moderate budget.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Seek.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Speech Pathologists heavily use Seek for job hunting.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">LinkedIn Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Job title targeting works well for Speech Path.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Indeed.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Good supplementary channel alongside Google.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Facebook Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Speech Path communities on Facebook. Awareness only.</td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(3)" title="Click to see top 5 platforms">
+          <td>
+            <strong style="color:#0C2D5E">Physiotherapist</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">physiotherapy jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">1,300</td>
+          <td style="text-align:center;font-size:14px">$0.00</td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Low 15%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e3" style="display:none">
+          <td colspan="5" style="padding:0;background:#F5F5F0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td colspan="5" style="padding:9px 16px;font-size:12px;font-weight:bold;color:#5F5E5A;background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                Top 5 platforms for &quot;Physiotherapist&quot; — ranked by suitability
+              </td></tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E6F1FB;
+                  color:#0C447C;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Google Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Strong search demand. High intent for Physio jobs.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Seek.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Physios are heavy Seek users. Top allied health category.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">LinkedIn Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Good for passive candidates not actively searching.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Indeed.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Good secondary job board reach for Physio roles.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Facebook Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Physio communities active on Facebook. Awareness only.</td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(4)" title="Click to see top 5 platforms">
+          <td>
+            <strong style="color:#0C2D5E">Podiatrist</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">podiatry jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">390</td>
+          <td style="text-align:center;font-size:14px">$1.14</td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Low 17%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              LinkedIn Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e4" style="display:none">
+          <td colspan="5" style="padding:0;background:#F5F5F0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td colspan="5" style="padding:9px 16px;font-size:12px;font-weight:bold;color:#5F5E5A;background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                Top 5 platforms for &quot;Podiatrist&quot; — ranked by suitability
+              </td></tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E1F5EE;
+                  color:#085041;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">LinkedIn Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Low search volume makes LinkedIn job title targeting better value.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Google Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Low competition = easy win with a small budget.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Seek.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Podiatrists use Seek regularly. Niche but reliable.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Indeed.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Secondary reach for this niche specialty.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Facebook Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Small community. Brand awareness only.</td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(5)" title="Click to see top 5 platforms">
+          <td>
+            <strong style="color:#0C2D5E">Psychology</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">psychology jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">1,900</td>
+          <td style="text-align:center;font-size:14px">$0.38</td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Low 19%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e5" style="display:none">
+          <td colspan="5" style="padding:0;background:#F5F5F0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr><td colspan="5" style="padding:9px 16px;font-size:12px;font-weight:bold;color:#5F5E5A;background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                Top 5 platforms for &quot;Psychology&quot; — ranked by suitability
+              </td></tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E6F1FB;
+                  color:#0C447C;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Google Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">High CPC signals very strong demand and competition.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Seek.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Psychology is top allied health category on Seek.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">LinkedIn Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Large Psychologist audience on LinkedIn AU.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Indeed.com.au</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Good secondary job board for Psychology roles.</td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;font-size:11px;font-weight:bold;margin-right:8px">Facebook Ads</span>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">Psychology communities very active on Facebook.</td>
+            </tr>
+            </table>
+          </td>
+        </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div id="s-comp" style="display:none">
+    <div class="card">
+      <div class="card-hdr">Real Competitors Found in Google AU Rankings</div>
+      <table>
+        <thead><tr>
+          <th>Domain</th>
+          <th class="c">Organic Keywords</th>
+          <th class="c">Organic Traffic</th>
+          <th class="c">Est. Ad Spend/mo</th>
+          <th class="c">Paid Keywords</th>
+        </tr></thead>
+        <tbody>
+        <tr style="">
+          <td style=";padding:10px 12px"><span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#1</span>www.seek.com.au</td>
+          <td style="text-align:center">1,636,490</td>
+          <td style="text-align:center">4,490,277</td>
+          <td style="text-align:center;color:#A32D2D;font-weight:bold">$15,569/mo</td>
+          <td style="text-align:center">1,012</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;border-radius:99px;overflow:hidden">
+              <div style="width:100%;height:100%;background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px"><span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#2</span>www.alectoaustralia.com</td>
+          <td style="text-align:center">2,722</td>
+          <td style="text-align:center">6,787</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">$0/mo</td>
+          <td style="text-align:center">0</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px"><span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#3</span>medrecruit.medworld.com</td>
+          <td style="text-align:center">5,123</td>
+          <td style="text-align:center">10,329</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">$210/mo</td>
+          <td style="text-align:center">12</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;border-radius:99px;overflow:hidden">
+              <div style="width:1%;height:100%;background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px"><span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#4</span>www.dxcmedical.com.au</td>
+          <td style="text-align:center">640</td>
+          <td style="text-align:center">745</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">$0/mo</td>
+          <td style="text-align:center">0</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px"><span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#5</span>www.bmj.com</td>
+          <td style="text-align:center">152,674</td>
+          <td style="text-align:center">113,910</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">$7/mo</td>
+          <td style="text-align:center">9</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="background:#E1F5EE;">
+          <td style="font-weight:bold;;padding:10px 12px">medfuture.com.au <span style="font-size:11px;font-weight:bold;color:#0C2D5E">(MedFuture — YOU)</span></td>
+          <td style="text-align:center">95</td>
+          <td style="text-align:center">93</td>
+          <td style="text-align:center;color:#0F6E56;font-weight:bold">$0/mo</td>
+          <td style="text-align:center">0</td>
+        </tr>
+        <tr style="background:#E1F5EE;">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;background:#0C2D5E;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATION -->
+  <div id="s-rec" style="display:none">
+    <div class="plat-cards">
+      <div class="plat-card top">
+        <strong style="color:#185FA5;font-size:14px">Google Ads</strong>
+        <div style="font-size:30px;font-weight:bold;color:#185FA5;margin:8px 0">92/100</div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7">Best for GP, Physio, Psychology, Speech Path. People actively searching for jobs.</div>
+        <div style="font-size:11px;color:#0C2D5E;font-weight:bold;margin-top:8px">Recommended — Start here</div>
+      </div>
+      <div class="plat-card">
+        <strong style="color:#0F6E56;font-size:14px">LinkedIn Ads</strong>
+        <div style="font-size:30px;font-weight:bold;color:#0F6E56;margin:8px 0">74/100</div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7">Best for OT and Podiatrist. Target by exact job title. Very precise audience.</div>
+        <div style="font-size:11px;color:#0F6E56;font-weight:bold;margin-top:8px">Use alongside Google</div>
+      </div>
+      <div class="plat-card">
+        <strong style="color:#854F0B;font-size:14px">Seek.com.au</strong>
+        <div style="font-size:30px;font-weight:bold;color:#854F0B;margin:8px 0">79/100</div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7">Australia's #1 job board. All specialties use Seek. Strong supplementary channel.</div>
+        <div style="font-size:11px;color:#854F0B;font-weight:bold;margin-top:8px">Strong supplementary</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">Action Plan — What MedFuture Should Do</div>
+      
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1EFE8;flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">#1</strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">General Practitioner</strong>
+            <p style="font-size:12px;color:#5F5E5A;margin-top:2px">Highest search volume. All competitors bidding here. Start first.</p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:bold">Google Ads</span>
+          <strong style="font-size:16px;color:#0C2D5E">95/100</strong>
+          <span style="background:#F1EFE8;color:#444;padding:4px 12px;border-radius:6px;font-size:12px">$1,500/mo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1EFE8;flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">#2</strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Physiotherapist</strong>
+            <p style="font-size:12px;color:#5F5E5A;margin-top:2px">Very strong search volume. High intent audience.</p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:bold">Google Ads</span>
+          <strong style="font-size:16px;color:#0C2D5E">90/100</strong>
+          <span style="background:#F1EFE8;color:#444;padding:4px 12px;border-radius:6px;font-size:12px">$1,200/mo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1EFE8;flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">#3</strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Psychology</strong>
+            <p style="font-size:12px;color:#5F5E5A;margin-top:2px">High CPC signals very strong market demand.</p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:bold">Google Ads</span>
+          <strong style="font-size:16px;color:#0C2D5E">88/100</strong>
+          <span style="background:#F1EFE8;color:#444;padding:4px 12px;border-radius:6px;font-size:12px">$1,000/mo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1EFE8;flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">#4</strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Speech Pathology</strong>
+            <p style="font-size:12px;color:#5F5E5A;margin-top:2px">Lower difficulty = easier to win. Cheapest CPC.</p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:bold">Google Ads</span>
+          <strong style="font-size:16px;color:#0C2D5E">82/100</strong>
+          <span style="background:#F1EFE8;color:#444;padding:4px 12px;border-radius:6px;font-size:12px">$600/mo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1EFE8;flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">#5</strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Occupational Therapist</strong>
+            <p style="font-size:12px;color:#5F5E5A;margin-top:2px">Target exact job title. 18,000 OTs on LinkedIn AU.</p>
+          </div>
+          <span style="background:#E1F5EE;color:#085041;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:bold">LinkedIn Ads</span>
+          <strong style="font-size:16px;color:#0C2D5E">88/100</strong>
+          <span style="background:#F1EFE8;color:#444;padding:4px 12px;border-radius:6px;font-size:12px">$400/mo</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid #F1EFE8;flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">#6</strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Podiatrist</strong>
+            <p style="font-size:12px;color:#5F5E5A;margin-top:2px">Low search volume makes LinkedIn more cost-effective.</p>
+          </div>
+          <span style="background:#E1F5EE;color:#085041;padding:4px 12px;border-radius:99px;font-size:12px;font-weight:bold">LinkedIn Ads</span>
+          <strong style="font-size:16px;color:#0C2D5E">85/100</strong>
+          <span style="background:#F1EFE8;color:#444;padding:4px 12px;border-radius:6px;font-size:12px">$300/mo</span>
+        </div>
+    </div>
+    <div class="alert-red" style="margin-top:14px">
+      <strong>Budget Alert — Based on Real SEMrush Data</strong><br><br>
+      Top competitor <strong>www.seek.com.au</strong> spends <strong>$15,569/month</strong> on paid ads.<br>
+      MedFuture currently spends <strong>$0/month</strong> — significantly less than competitors.<br><br>
+      <strong>Recommended starting budget: $4,000–$5,000/month</strong><br>
+      Split: Google Ads 70% ($2,800–$3,500) + LinkedIn Ads 30% ($1,200–$1,500)
+    </div>
+  </div>
+
+  <div class="footer">
+    MedFuture Australia &nbsp;·&nbsp; Generated 09 May 2026, 04:46 PM &nbsp;·&nbsp; Powered by SEMrush API
+  </div>
+</div>
+
+<script>
+function show(name, el) {
+  ['kw','comp','rec'].forEach(s => {
+    document.getElementById('s-'+s).style.display = s===name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  el.classList.add('on');
+}
+var openIdx = null;
+function toggle(idx) {
+  var row = document.getElementById('e'+idx);
+  if (!row) return;
+  if (openIdx !== null && openIdx !== idx) {
+    var prev = document.getElementById('e'+openIdx);
+    if (prev) prev.style.display = 'none';
+  }
+  row.style.display = row.style.display==='none' ? 'table-row' : 'none';
+  openIdx = row.style.display==='table-row' ? idx : null;
+}
+</script>
+</body>
+</html>
