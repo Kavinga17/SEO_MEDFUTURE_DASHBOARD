@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MedFuture — SEMrush Dashboard</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,Helvetica,sans-serif;background:#F5F5F0;
+        color:#2C2C2A;font-size:14px}
+  .hdr{background:#0C2D5E;padding:18px 24px;display:flex;
+        align-items:center;justify-content:space-between;
+        flex-wrap:wrap;gap:12px}
+  .hdr h1{color:white;font-size:20px;margin-bottom:3px}
+  .hdr p{color:#B5D4F4;font-size:12px}
+  .badge{background:#E6F1FB;color:#0C447C;font-size:12px;
+          padding:5px 14px;border-radius:6px;font-weight:bold}
+  .box{max-width:1120px;margin:0 auto;padding:20px}
+  .metrics{display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+            gap:10px;margin-bottom:18px}
+  .metric{background:white;border-radius:8px;padding:14px;
+           border:0.5px solid #D3D1C7}
+  .metric .lbl{font-size:11px;color:#5F5E5A;margin-bottom:5px}
+  .metric .val{font-size:22px;font-weight:bold}
+  .insight{background:#E6F1FB;border-left:4px solid #0C2D5E;
+            border-radius:8px;padding:12px 16px;margin-bottom:14px;
+            font-size:13px;color:#0C447C}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tab{padding:9px 20px;border:1px solid #D3D1C7;border-radius:6px;
+        cursor:pointer;background:white;color:#5F5E5A;
+        font-size:13px;font-weight:bold}
+  .tab:hover{background:#E6F1FB;color:#0C447C}
+  .tab.on{background:#0C2D5E;color:white;border-color:#0C2D5E}
+  .card{background:white;border-radius:10px;
+         border:0.5px solid #D3D1C7;overflow:hidden;margin-bottom:14px}
+  .card-hdr{background:#0C2D5E;color:white;
+             padding:11px 16px;font-weight:bold;font-size:13px}
+  .data-tag{background:#E1F5EE;color:#085041;font-size:10px;
+             padding:2px 6px;border-radius:4px;margin-left:6px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#185FA5;color:white;padding:10px 12px;
+      text-align:left;font-size:12px;white-space:nowrap}
+  th.c{text-align:center}
+  td{padding:10px 12px;border-bottom:0.5px solid #F0F0EA;
+      vertical-align:middle}
+  tr:nth-child(even) td{background:#FAFAF8}
+  .kw-row{cursor:pointer}
+  .kw-row:hover td{background:#EBF4FB!important}
+  .plat-cards{display:grid;
+               grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+               gap:12px;margin-bottom:16px}
+  .plat-card{background:white;border-radius:10px;
+              padding:16px;border:1px solid #D3D1C7}
+  .plat-card.top{border:2px solid #0C2D5E}
+  .alert-red{background:#FCEBEB;border-radius:8px;padding:16px;
+              color:#791F1F;font-size:13px;line-height:1.9}
+  .footer{text-align:center;font-size:11px;color:#888;
+           margin-top:24px;padding-bottom:24px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <h1>MedFuture Australia — SEMrush Dashboard </h1>
+    <p>100% Data Driven &nbsp;·&nbsp;&nbsp;·&nbsp;
+       All decisions from real SEMrush API data &nbsp;·&nbsp; Australia</p>
+  </div>
+  <div style="text-align:right">
+    <div class="badge">✅ Live — 100% Data Driven</div>
+    <div style="font-size:11px;color:#B5D4F4;margin-top:4px">11 May 2026, 12:56 AM</div>
+  </div>
+</div>
+
+<div class="box">
+
+  
+
+  <div class="insight">
+   
+    &nbsp;|&nbsp; <strong>Google Ads: 4 specialties</strong>
+    &nbsp;|&nbsp; <strong>LinkedIn Ads: 2 specialties</strong>
+  </div>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="lbl">Total monthly searches</div>
+      <div class="val" style="color:#185FA5">5,510</div>
+    </div>
+    <div class="metric">
+      <div class="lbl">Avg CPC (AUD)</div>
+      <div class="val">$1.13</div>
+    </div>
+    <div class="metric">
+      <div class="lbl">MedFuture organic traffic</div>
+      <div class="val" style="color:#A32D2D">93/mo</div>
+    </div>
+    <div class="metric">
+      <div class="lbl">Top competitor spend</div>
+      <div class="val" style="color:#A32D2D">$15,208/mo</div>
+    </div>
+    <div class="metric">
+      <div class="lbl">MedFuture ad spend</div>
+      <div class="val">$0/mo</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" onclick="show('kw',this)">Keywords</div>
+    <div class="tab"    onclick="show('comp',this)">Competitors</div>
+    <div class="tab"    onclick="show('rec',this)">Final Recommendation</div>
+  </div>
+
+  <div id="s-kw">
+    <div class="card">
+      <div class="card-hdr">
+        Keyword Data
+        <span class="data-tag">SCORES FROM REAL DATA</span>
+      </div>
+      <table>
+        <thead><tr>
+          <th>Specialty / Best Keyword</th>
+          <th class="c">Monthly Volume</th>
+          <th class="c">CPC (AUD)</th>
+          <th class="c">Difficulty</th>
+          <th class="c">Platform (from data)</th>
+        </tr></thead>
+        <tbody>
+        <tr class="kw-row" onclick="toggle(0)"
+            title="Click to see full platform breakdown">
+          <td>
+            <strong style="color:#0C2D5E">General Practitioner</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">GP jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">
+            720
+          </td>
+          <td style="text-align:center;font-size:14px">
+            $2.45
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Low 14%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e0" style="display:none">
+          <td colspan="5" style="padding:0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr>
+                <td colspan="5" style="padding:9px 16px;
+                  font-size:12px;font-weight:bold;color:#5F5E5A;
+                  background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                  All 5 platforms scored from real SEMrush data
+                  for &quot;GP jobs&quot;
+                </td>
+              </tr>
+              <tr style="background:#EEF4FF">
+                <td colspan="5" style="padding:8px 16px;
+                  font-size:11px;color:#0C447C;
+                  border-bottom:1px solid #D3D1C7">
+                  💡 <strong>Decision:</strong> Google Ads —
+                  720 searches/month + $2.45 CPC — affordable on Google
+                </td>
+              </tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#FAEEDA;
+                  color:#633806;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Seek.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  90/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Seek ranks #1 on Google AU for 'GP jobs'. Seek has 4,039,060 monthly AU visitors. Seek spends $15,208/mo on their own ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Google Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  63/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                720 monthly searches in AU. CPC $2.45/click. Difficulty 14% (easy) — Google Ads recommended.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  LinkedIn Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  48/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                720 monthly Google searches. LinkedIn job title targeting reaches 'General Practitioner' professionals directly — good secondary channel.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Facebook Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  26/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 720 monthly searches. Low intent platform. Recommend using only for general MedFuture brand awareness — not direct lead generation.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Indeed.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  23/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Indeed has 753 monthly AU visitors. Doesn't rank for 'GP jobs' specifically but strong general job board presence.
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(1)"
+            title="Click to see full platform breakdown">
+          <td>
+            <strong style="color:#0C2D5E">Occupational Therapist</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">occupational therapist jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">
+            480
+          </td>
+          <td style="text-align:center;font-size:14px">
+            $0.72
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Low 17%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              LinkedIn Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e1" style="display:none">
+          <td colspan="5" style="padding:0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr>
+                <td colspan="5" style="padding:9px 16px;
+                  font-size:12px;font-weight:bold;color:#5F5E5A;
+                  background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                  All 5 platforms scored from real SEMrush data
+                  for &quot;occupational therapist jobs&quot;
+                </td>
+              </tr>
+              <tr style="background:#EEF4FF">
+                <td colspan="5" style="padding:8px 16px;
+                  font-size:11px;color:#0C447C;
+                  border-bottom:1px solid #D3D1C7">
+                  💡 <strong>Decision:</strong> LinkedIn Ads —
+                  Only 480 monthly searches — too low for Google. Target by job title on LinkedIn
+                </td>
+              </tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#FAEEDA;
+                  color:#633806;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Seek.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  85/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Seek ranks #1 on Google AU for 'occupational therapist jobs'. Seek has 4,039,060 monthly AU visitors. Seek spends $15,208/mo on their own ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  LinkedIn Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  60/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 480 Google searches/month — too low for Google Ads. LinkedIn lets MedFuture target 'Occupational Therapist' professionals by exact job title, reaching them directly.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Google Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  57/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 480 monthly searches. CPC $0.72. Low volume limits Google reach — consider LinkedIn instead.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Indeed.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  57/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Indeed ranks #3 on Google AU for 'occupational therapist jobs'. 753 monthly AU visitors. Good secondary reach alongside Google Ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Facebook Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  20/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 480 monthly searches. Low intent platform. Recommend using only for general MedFuture brand awareness — not direct lead generation.
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(2)"
+            title="Click to see full platform breakdown">
+          <td>
+            <strong style="color:#0C2D5E">Speech Pathology</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">speech pathology jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">
+            720
+          </td>
+          <td style="text-align:center;font-size:14px">
+            $0.97
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Low 16%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e2" style="display:none">
+          <td colspan="5" style="padding:0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr>
+                <td colspan="5" style="padding:9px 16px;
+                  font-size:12px;font-weight:bold;color:#5F5E5A;
+                  background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                  All 5 platforms scored from real SEMrush data
+                  for &quot;speech pathology jobs&quot;
+                </td>
+              </tr>
+              <tr style="background:#EEF4FF">
+                <td colspan="5" style="padding:8px 16px;
+                  font-size:11px;color:#0C447C;
+                  border-bottom:1px solid #D3D1C7">
+                  💡 <strong>Decision:</strong> Google Ads —
+                  720 searches/month + $0.97 CPC — affordable on Google
+                </td>
+              </tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#FAEEDA;
+                  color:#633806;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Seek.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  90/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Seek ranks #1 on Google AU for 'speech pathology jobs'. Seek has 4,039,060 monthly AU visitors. Seek spends $15,208/mo on their own ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Google Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  75/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                720 monthly searches in AU. CPC $0.97/click. Difficulty 16% (easy) — Google Ads recommended.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  LinkedIn Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  48/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                720 monthly Google searches. LinkedIn job title targeting reaches 'Speech Pathology' professionals directly — good secondary channel.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Indeed.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  41/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Indeed ranks #7 on Google AU for 'speech pathology jobs'. 753 monthly AU visitors. Good secondary reach alongside Google Ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Facebook Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  26/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 720 monthly searches. Low intent platform. Recommend using only for general MedFuture brand awareness — not direct lead generation.
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(3)"
+            title="Click to see full platform breakdown">
+          <td>
+            <strong style="color:#0C2D5E">Physiotherapist</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">physiotherapy jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">
+            1,300
+          </td>
+          <td style="text-align:center;font-size:14px">
+            $0.00
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Low 15%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e3" style="display:none">
+          <td colspan="5" style="padding:0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr>
+                <td colspan="5" style="padding:9px 16px;
+                  font-size:12px;font-weight:bold;color:#5F5E5A;
+                  background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                  All 5 platforms scored from real SEMrush data
+                  for &quot;physiotherapy jobs&quot;
+                </td>
+              </tr>
+              <tr style="background:#EEF4FF">
+                <td colspan="5" style="padding:8px 16px;
+                  font-size:11px;color:#0C447C;
+                  border-bottom:1px solid #D3D1C7">
+                  💡 <strong>Decision:</strong> Google Ads —
+                  1,300 searches/month — very high Google demand
+                </td>
+              </tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E6F1FB;
+                  color:#0C447C;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Google Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  90/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                1,300 Australians search 'physiotherapy jobs' monthly. CPC is $0.00 — nobody advertising yet! MedFuture can appear FREE. Difficulty: 15%.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Seek.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  90/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Seek ranks #1 on Google AU for 'physiotherapy jobs'. Seek has 4,039,060 monthly AU visitors. Seek spends $15,208/mo on their own ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Indeed.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  49/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Indeed ranks #4 on Google AU for 'physiotherapy jobs'. 753 monthly AU visitors. Good secondary reach alongside Google Ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  LinkedIn Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  38/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                1,300 monthly Google searches available. LinkedIn targets passive candidates not actively searching — use alongside Google Ads for maximum reach.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Facebook Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  32/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                1,300 monthly searches shows active market. Facebook useful for MedFuture brand awareness but people are not actively job hunting here.
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(4)"
+            title="Click to see full platform breakdown">
+          <td>
+            <strong style="color:#0C2D5E">Podiatrist</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">podiatry jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">
+            390
+          </td>
+          <td style="text-align:center;font-size:14px">
+            $1.14
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Low 17%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              LinkedIn Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e4" style="display:none">
+          <td colspan="5" style="padding:0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr>
+                <td colspan="5" style="padding:9px 16px;
+                  font-size:12px;font-weight:bold;color:#5F5E5A;
+                  background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                  All 5 platforms scored from real SEMrush data
+                  for &quot;podiatry jobs&quot;
+                </td>
+              </tr>
+              <tr style="background:#EEF4FF">
+                <td colspan="5" style="padding:8px 16px;
+                  font-size:11px;color:#0C447C;
+                  border-bottom:1px solid #D3D1C7">
+                  💡 <strong>Decision:</strong> LinkedIn Ads —
+                  Only 390 monthly searches — too low for Google. Target by job title on LinkedIn
+                </td>
+              </tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#FAEEDA;
+                  color:#633806;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Seek.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  85/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Seek ranks #1 on Google AU for 'podiatry jobs'. Seek has 4,039,060 monthly AU visitors. Seek spends $15,208/mo on their own ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  LinkedIn Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  70/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 390 Google searches/month — too low for Google Ads. LinkedIn lets MedFuture target 'Podiatrist' professionals by exact job title, reaching them directly.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Indeed.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  57/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Indeed ranks #3 on Google AU for 'podiatry jobs'. 753 monthly AU visitors. Good secondary reach alongside Google Ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Google Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  51/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 390 monthly searches. CPC $1.14. Low volume limits Google reach — consider LinkedIn instead.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Facebook Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  20/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Only 390 monthly searches. Low intent platform. Recommend using only for general MedFuture brand awareness — not direct lead generation.
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="kw-row" onclick="toggle(5)"
+            title="Click to see full platform breakdown">
+          <td>
+            <strong style="color:#0C2D5E">Psychology</strong>
+            <p style="color:#888;font-size:12px;margin-top:2px">psychology jobs</p>
+          </td>
+          <td style="text-align:center;font-weight:bold;font-size:15px">
+            1,900
+          </td>
+          <td style="text-align:center;font-size:14px">
+            $0.38
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E1F5EE;color:#085041;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Low 19%
+            </span>
+          </td>
+          <td style="text-align:center">
+            <span style="background:#E6F1FB;color:#0C447C;padding:3px 10px;
+              border-radius:99px;font-size:11px;font-weight:bold">
+              Google Ads
+            </span>
+          </td>
+        </tr>
+        <tr id="e5" style="display:none">
+          <td colspan="5" style="padding:0">
+            <table style="width:100%;border-collapse:collapse">
+              <tr>
+                <td colspan="5" style="padding:9px 16px;
+                  font-size:12px;font-weight:bold;color:#5F5E5A;
+                  background:#EAEAE5;border-bottom:1px solid #D3D1C7">
+                  All 5 platforms scored from real SEMrush data
+                  for &quot;psychology jobs&quot;
+                </td>
+              </tr>
+              <tr style="background:#EEF4FF">
+                <td colspan="5" style="padding:8px 16px;
+                  font-size:11px;color:#0C447C;
+                  border-bottom:1px solid #D3D1C7">
+                  💡 <strong>Decision:</strong> Google Ads —
+                  1,900 searches/month — very high Google demand
+                </td>
+              </tr>
+              
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#1</strong>
+                <span style="background:#E6F1FB;
+                  color:#0C447C;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Google Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  94/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                1,900 monthly searches in AU. CPC $0.38/click. Difficulty 19% (easy) — Google Ads recommended.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#2</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Seek.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  83/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Seek ranks #2 on Google AU for 'psychology jobs'. Seek has 4,039,060 monthly AU visitors. Seek spends $15,208/mo on their own ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#3</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Indeed.com.au
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  49/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                Indeed ranks #4 on Google AU for 'psychology jobs'. 753 monthly AU visitors. Good secondary reach alongside Google Ads.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#4</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  LinkedIn Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  38/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                1,900 monthly Google searches available. LinkedIn targets passive candidates not actively searching — use alongside Google Ads for maximum reach.
+              </td>
+            </tr>
+            <tr style="background:#F8F8F5;border-bottom:1px solid #EFEFEF">
+              <td style="padding:8px 14px 8px 44px;white-space:nowrap">
+                <strong style="color:#aaa;margin-right:8px">#5</strong>
+                <span style="background:#F1EFE8;
+                  color:#5F5E5A;
+                  padding:2px 10px;border-radius:99px;
+                  font-size:11px;font-weight:bold">
+                  Facebook Ads
+                </span>
+                <strong style="margin-left:8px;color:#2C2C2A">
+                  38/100
+                </strong>
+              </td>
+              <td colspan="4" style="padding:8px 12px;font-size:12px;color:#5F5E5A">
+                1,900 monthly searches shows active market. Facebook useful for MedFuture brand awareness but people are not actively job hunting here.
+              </td>
+            </tr>
+            </table>
+          </td>
+        </tr></tbody>
+      </table>
+    </div>
+    <div style="background:#F0F4FF;border-radius:8px;
+      padding:12px 16px;font-size:12px;color:#0C447C;
+      border-left:4px solid #185FA5">
+      <strong>How platform is decided (rules applied to real data):</strong>
+      &nbsp; Volume ≥ 1,000 → Google Ads &nbsp;|&nbsp;
+      Volume 500–999 + CPC ≤ $3 → Google Ads &nbsp;|&nbsp;
+      Volume 500–999 + CPC &gt; $3 → LinkedIn &nbsp;|&nbsp;
+      Volume &lt; 500 → LinkedIn &nbsp;|&nbsp;
+      No data → LinkedIn
+    </div>
+  </div>
+
+  <div id="s-comp" style="display:none">
+    <div class="card">
+      <div class="card-hdr">
+        Real Competitors from Google AU Rankings
+        <span class="data-tag">REAL DATA</span>
+      </div>
+      <table>
+        <thead><tr>
+          <th>Domain</th>
+          <th class="c">Organic Keywords</th>
+          <th class="c">Organic Traffic</th>
+          <th class="c">Est. Ad Spend/mo</th>
+          <th class="c">Paid Keywords</th>
+        </tr></thead>
+        <tbody>
+        <tr style="">
+          <td style=";padding:10px 12px">
+            <span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#1</span>www.seek.com.au
+          </td>
+          <td style="text-align:center">1,614,785</td>
+          <td style="text-align:center">4,039,060</td>
+          <td style="text-align:center;color:#A32D2D;font-weight:bold">
+            $15,208/mo
+          </td>
+          <td style="text-align:center">936</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;
+              border-radius:99px;overflow:hidden">
+              <div style="width:100%;height:100%;
+                background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px">
+            <span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#2</span>www.alectoaustralia.com
+          </td>
+          <td style="text-align:center">2,736</td>
+          <td style="text-align:center">6,130</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">
+            $0/mo
+          </td>
+          <td style="text-align:center">0</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;
+              border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;
+                background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px">
+            <span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#3</span>medrecruit.medworld.com
+          </td>
+          <td style="text-align:center">5,105</td>
+          <td style="text-align:center">10,089</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">
+            $217/mo
+          </td>
+          <td style="text-align:center">13</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;
+              border-radius:99px;overflow:hidden">
+              <div style="width:1%;height:100%;
+                background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px">
+            <span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#4</span>www.dxcmedical.com.au
+          </td>
+          <td style="text-align:center">644</td>
+          <td style="text-align:center">758</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">
+            $0/mo
+          </td>
+          <td style="text-align:center">0</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;
+              border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;
+                background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="">
+          <td style=";padding:10px 12px">
+            <span style="background:#0C2D5E;color:white;padding:1px 6px;border-radius:4px;font-size:11px;margin-right:6px">#5</span>www.bmj.com
+          </td>
+          <td style="text-align:center">154,546</td>
+          <td style="text-align:center">113,621</td>
+          <td style="text-align:center;color:#854F0B;font-weight:bold">
+            $8/mo
+          </td>
+          <td style="text-align:center">11</td>
+        </tr>
+        <tr style="">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;
+              border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;
+                background:#185FA5;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr>
+        <tr style="background:#EBF4FB;">
+          <td style="font-weight:bold;;padding:10px 12px">
+            medfuture.com.au <span style="color:#0C2D5E;font-size:11px;font-weight:bold">(MedFuture — YOU)</span>
+          </td>
+          <td style="text-align:center">89</td>
+          <td style="text-align:center">93</td>
+          <td style="text-align:center;color:#0C2D5E;font-weight:bold">
+            $0/mo
+          </td>
+          <td style="text-align:center">0</td>
+        </tr>
+        <tr style="background:#EBF4FB;">
+          <td colspan="5" style="padding:2px 14px 8px">
+            <div style="height:6px;background:#E8E8E0;
+              border-radius:99px;overflow:hidden">
+              <div style="width:0%;height:100%;
+                background:#0C2D5E;border-radius:99px"></div>
+            </div>
+          </td>
+        </tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div id="s-rec" style="display:none">
+    
+    <div class="plat-cards">
+      <div class="plat-card top">
+        <strong style="color:#0C2D5E;font-size:14px">Google Ads</strong>
+        <div style="font-size:30px;font-weight:bold;
+          color:#0C2D5E;margin:8px 0">
+          0/100
+        </div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7">
+          <strong>4 specialties</strong> recommended
+          here based on real search volume data.<br>
+          <span style="font-size:11px;color:#888">General Practitioner, Speech Pathology, Physiotherapist, Psychology</span>
+        </div>
+        <div style="font-size:11px;color:#0C2D5E;
+          font-weight:bold;margin-top:8px">
+          Recommended — Start here
+        </div>
+      </div>
+      <div class="plat-card">
+        <strong style="color:#0F6E56;font-size:14px">LinkedIn Ads</strong>
+        <div style="font-size:30px;font-weight:bold;
+          color:#0F6E56;margin:8px 0">
+          70/100
+        </div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7">
+          <strong>2 specialties</strong> recommended
+          here — low Google search volume detected.<br>
+          <span style="font-size:11px;color:#888">Occupational Therapist, Podiatrist</span>
+        </div>
+        <div style="font-size:11px;color:#0F6E56;
+          font-weight:bold;margin-top:8px">
+          Use for low-volume specialties
+        </div>
+      </div>
+      <div class="plat-card">
+        <strong style="color:#854F0B;font-size:14px">Seek.com.au</strong>
+        <div style="font-size:30px;font-weight:bold;
+          color:#854F0B;margin:8px 0">
+          90/100
+        </div>
+        <div style="font-size:12px;color:#5F5E5A;line-height:1.7">
+          Seek score based on their real organic rankings
+          for your keywords + actual AU visitor data
+          from SEMrush.
+        </div>
+        <div style="font-size:11px;color:#854F0B;
+          font-weight:bold;margin-top:8px">
+          Strong supplementary channel
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-hdr">
+        Action Plan — Sorted by real data score
+        <span class="data-tag">100% DATA DRIVEN</span>
+      </div>
+      
+        <div style="display:flex;align-items:center;gap:12px;
+          padding:13px 16px;border-bottom:1px solid #F1EFE8;
+          flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">
+            #1
+          </strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Physiotherapist</strong>
+            <p style="font-size:11px;color:#5F5E5A;margin-top:3px">
+              1,300 searches/month — very high Google demand
+            </p>
+            <p style="font-size:10px;color:#B4B2A9;margin-top:2px">
+              Keyword: physiotherapy jobs &nbsp;|&nbsp;
+              Volume: 1,300/mo &nbsp;|&nbsp;
+              CPC: $0.00
+            </p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;
+            padding:4px 12px;border-radius:99px;
+            font-size:12px;font-weight:bold">
+            Google Ads
+          </span>
+          <strong style="font-size:16px;color:#0C2D5E">
+            85/100
+          </strong>
+          <span style="background:#F1EFE8;color:#444;
+            padding:4px 12px;border-radius:6px;font-size:12px">
+            $100/mo
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;
+          padding:13px 16px;border-bottom:1px solid #F1EFE8;
+          flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">
+            #2
+          </strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Psychology</strong>
+            <p style="font-size:11px;color:#5F5E5A;margin-top:3px">
+              1,900 searches/month — very high Google demand
+            </p>
+            <p style="font-size:10px;color:#B4B2A9;margin-top:2px">
+              Keyword: psychology jobs &nbsp;|&nbsp;
+              Volume: 1,900/mo &nbsp;|&nbsp;
+              CPC: $0.38
+            </p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;
+            padding:4px 12px;border-radius:99px;
+            font-size:12px;font-weight:bold">
+            Google Ads
+          </span>
+          <strong style="font-size:16px;color:#0C2D5E">
+            80/100
+          </strong>
+          <span style="background:#F1EFE8;color:#444;
+            padding:4px 12px;border-radius:6px;font-size:12px">
+            $200/mo
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;
+          padding:13px 16px;border-bottom:1px solid #F1EFE8;
+          flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">
+            #3
+          </strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Speech Pathology</strong>
+            <p style="font-size:11px;color:#5F5E5A;margin-top:3px">
+              720 searches/month + $0.97 CPC — affordable on Google
+            </p>
+            <p style="font-size:10px;color:#B4B2A9;margin-top:2px">
+              Keyword: speech pathology jobs &nbsp;|&nbsp;
+              Volume: 720/mo &nbsp;|&nbsp;
+              CPC: $0.97
+            </p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;
+            padding:4px 12px;border-radius:99px;
+            font-size:12px;font-weight:bold">
+            Google Ads
+          </span>
+          <strong style="font-size:16px;color:#0C2D5E">
+            78/100
+          </strong>
+          <span style="background:#F1EFE8;color:#444;
+            padding:4px 12px;border-radius:6px;font-size:12px">
+            $150/mo
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;
+          padding:13px 16px;border-bottom:1px solid #F1EFE8;
+          flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">
+            #4
+          </strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">General Practitioner</strong>
+            <p style="font-size:11px;color:#5F5E5A;margin-top:3px">
+              720 searches/month + $2.45 CPC — affordable on Google
+            </p>
+            <p style="font-size:10px;color:#B4B2A9;margin-top:2px">
+              Keyword: GP jobs &nbsp;|&nbsp;
+              Volume: 720/mo &nbsp;|&nbsp;
+              CPC: $2.45
+            </p>
+          </div>
+          <span style="background:#E6F1FB;color:#0C447C;
+            padding:4px 12px;border-radius:99px;
+            font-size:12px;font-weight:bold">
+            Google Ads
+          </span>
+          <strong style="font-size:16px;color:#0C2D5E">
+            75/100
+          </strong>
+          <span style="background:#F1EFE8;color:#444;
+            padding:4px 12px;border-radius:6px;font-size:12px">
+            $450/mo
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;
+          padding:13px 16px;border-bottom:1px solid #F1EFE8;
+          flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">
+            #5
+          </strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Occupational Therapist</strong>
+            <p style="font-size:11px;color:#5F5E5A;margin-top:3px">
+              Only 480 monthly searches — too low for Google. Target by job title on LinkedIn
+            </p>
+            <p style="font-size:10px;color:#B4B2A9;margin-top:2px">
+              Keyword: occupational therapist jobs &nbsp;|&nbsp;
+              Volume: 480/mo &nbsp;|&nbsp;
+              CPC: $0.72
+            </p>
+          </div>
+          <span style="background:#E1F5EE;color:#085041;
+            padding:4px 12px;border-radius:99px;
+            font-size:12px;font-weight:bold">
+            LinkedIn Ads
+          </span>
+          <strong style="font-size:16px;color:#0C2D5E">
+            65/100
+          </strong>
+          <span style="background:#F1EFE8;color:#444;
+            padding:4px 12px;border-radius:6px;font-size:12px">
+            $500/mo
+          </span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;
+          padding:13px 16px;border-bottom:1px solid #F1EFE8;
+          flex-wrap:wrap">
+          <strong style="color:#aaa;min-width:24px;font-size:16px">
+            #6
+          </strong>
+          <div style="flex:1;min-width:160px">
+            <strong style="font-size:14px">Podiatrist</strong>
+            <p style="font-size:11px;color:#5F5E5A;margin-top:3px">
+              Only 390 monthly searches — too low for Google. Target by job title on LinkedIn
+            </p>
+            <p style="font-size:10px;color:#B4B2A9;margin-top:2px">
+              Keyword: podiatry jobs &nbsp;|&nbsp;
+              Volume: 390/mo &nbsp;|&nbsp;
+              CPC: $1.14
+            </p>
+          </div>
+          <span style="background:#E1F5EE;color:#085041;
+            padding:4px 12px;border-radius:99px;
+            font-size:12px;font-weight:bold">
+            LinkedIn Ads
+          </span>
+          <strong style="font-size:16px;color:#0C2D5E">
+            59/100
+          </strong>
+          <span style="background:#F1EFE8;color:#444;
+            padding:4px 12px;border-radius:6px;font-size:12px">
+            $500/mo
+          </span>
+        </div>
+
+  </div>
+
+  <div class="footer">
+    MedFuture Australia &nbsp;·&nbsp; 11 May 2026, 12:56 AM &nbsp;·&nbsp;
+    SEMrush API v5 &nbsp;·&nbsp; 100% Data Driven — Zero Hardcoding
+  </div>
+</div>
+
+<script>
+function show(name, el) {
+  ['kw','comp','rec'].forEach(s => {
+    document.getElementById('s-'+s).style.display =
+      s===name ? 'block' : 'none';
+  });
+  document.querySelectorAll('.tab').forEach(
+    t => t.classList.remove('on'));
+  el.classList.add('on');
+}
+var openIdx = null;
+function toggle(idx) {
+  var row = document.getElementById('e'+idx);
+  if (!row) return;
+  if (openIdx !== null && openIdx !== idx) {
+    var prev = document.getElementById('e'+openIdx);
+    if (prev) prev.style.display = 'none';
+  }
+  row.style.display = row.style.display==='none' ? 'table-row' : 'none';
+  openIdx = row.style.display==='table-row' ? idx : null;
+}
+</script>
+</body>
+</html>
